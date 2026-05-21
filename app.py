@@ -10,40 +10,192 @@ st.set_page_config(
 # ── CSS ───────────────────────────────────────────────────────────────────────
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
 
 :root {
-    --bg:#E3E355; --surface:#FACC15; --border:#000345;
-    --accent:#4DA3FF; --accent2:#66B2FF; --warn:#FFC857;
-    --green:#22c55e; --red:#ef4444;
-    --text:#FFFFFF; --muted:#C7C7C7;
+    --bg:       #f5f7fa;
+    --surface:  #ffffff;
+    --sidebar:  #1e2a3a;
+    --border:   #dde3ed;
+    --accent:   #1a6ef5;
+    --accent2:  #0d4ec9;
+    --warn:     #d97706;
+    --green:    #16a34a;
+    --red:      #dc2626;
+    --text:     #0f172a;
+    --muted:    #64748b;
+    --card-top: #1a6ef5;
 }
-html,body,[data-testid="stAppViewContainer"]{background:var(--bg)!important;color:var(--text)!important;font-family:'DM Sans',sans-serif}
-[data-testid="stSidebar"]{background:var(--surface)!important;border-right:1px solid var(--border)!important}
-[data-testid="stSidebar"] *{color:var(--text)!important}
-.sm-title{font-family:'Space Mono',monospace;font-size:2.4rem;font-weight:700;background:linear-gradient(135deg,var(--accent) 0%,var(--accent2) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-1px;margin-bottom:0}
-.sm-sub{color:var(--muted);font-size:.9rem;letter-spacing:.05em;margin-top:4px}
-.metric-row{display:flex;gap:12px;flex-wrap:wrap;margin:1rem 0}
-.metric-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 18px;flex:1;min-width:110px}
-.metric-card .val{font-family:'Space Mono',monospace;font-size:1.5rem;color:var(--accent);font-weight:700}
-.metric-card .lbl{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
-.det-table{width:100%;border-collapse:collapse;font-size:.85rem}
-.det-table th{background:var(--border);padding:7px 11px;text-align:left;font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
-.det-table td{padding:7px 11px;border-bottom:1px solid var(--border);vertical-align:middle}
-.det-table tr:hover td{background:var(--border)}
-.badge{display:inline-block;padding:2px 8px;border-radius:999px;font-size:.7rem;font-weight:600;background:rgba(0,229,255,.15);color:var(--accent);border:1px solid rgba(0,229,255,.3)}
-.badge-ref{background:rgba(255,215,0,.15);color:#ffd700;border:1px solid rgba(255,215,0,.3)}
-.badge-mode-h{background:rgba(34,197,94,.15);color:var(--green);border:1px solid rgba(34,197,94,.3)}
-.badge-mode-t{background:rgba(245,158,11,.15);color:var(--warn);border:1px solid rgba(245,158,11,.3)}
-.badge-mode-n{background:rgba(239,68,68,.15);color:var(--red);border:1px solid rgba(239,68,68,.3)}
-.info-box{background:rgba(0,229,255,.07);border-left:3px solid var(--accent);border-radius:6px;padding:11px 15px;font-size:.875rem;margin:.6rem 0}
-.warn-box{background:rgba(245,158,11,.08);border-left:3px solid var(--warn);border-radius:6px;padding:11px 15px;font-size:.875rem;margin:.6rem 0}
-.good-box{background:rgba(34,197,94,.08);border-left:3px solid var(--green);border-radius:6px;padding:11px 15px;font-size:.875rem;margin:.6rem 0}
-[data-testid="stFileUploader"]{background:var(--surface)!important;border:2px dashed var(--border)!important;border-radius:12px!important}
-[data-testid="stFileUploader"]:hover{border-color:var(--accent)!important}
-.stButton>button{background:linear-gradient(135deg,var(--accent) 0%,var(--accent2) 100%)!important;color:#000!important;border:none!important;border-radius:8px!important;font-family:'Space Mono',monospace!important;font-size:.78rem!important;letter-spacing:.05em!important;padding:.5rem 1.2rem!important;font-weight:700!important}
-.stProgress>div>div{background:var(--accent)!important}
-#MainMenu,footer,header{visibility:hidden}
+
+/* ── Page background ───────────────────────────────────────── */
+html, body, [data-testid="stAppViewContainer"] {
+    background: var(--bg) !important;
+    color: var(--text) !important;
+    font-family: 'Inter', sans-serif;
+}
+
+/* ── Sidebar — deep navy ───────────────────────────────────── */
+[data-testid="stSidebar"] {
+    background: var(--sidebar) !important;
+    border-right: none !important;
+}
+[data-testid="stSidebar"] * { color: #e2eaf4 !important; }
+[data-testid="stSidebar"] h3,
+[data-testid="stSidebar"] h4 { color: #ffffff !important; }
+[data-testid="stSidebar"] label { color: #94aabf !important; font-size: .8rem !important; }
+[data-testid="stSidebar"] .stSelectbox > div > div,
+[data-testid="stSidebar"] .stNumberInput > div > div > input {
+    background: #2c3e52 !important;
+    color: #e2eaf4 !important;
+    border: 1px solid #3d5266 !important;
+    border-radius: 6px !important;
+}
+[data-testid="stSidebar"] hr { border-color: #2c3e52 !important; }
+
+/* ── Title ─────────────────────────────────────────────────── */
+.sm-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: -0.5px;
+    margin-bottom: 0;
+}
+.sm-sub {
+    color: var(--muted);
+    font-size: .9rem;
+    margin-top: 3px;
+    letter-spacing: .02em;
+}
+
+/* ── Metric cards ──────────────────────────────────────────── */
+.metric-row { display: flex; gap: 12px; flex-wrap: wrap; margin: 1rem 0; }
+.metric-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--card-top);
+    border-radius: 10px;
+    padding: 14px 18px;
+    flex: 1;
+    min-width: 110px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.06);
+}
+.metric-card .val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.55rem;
+    color: var(--accent);
+    font-weight: 600;
+    line-height: 1.2;
+}
+.metric-card .lbl {
+    font-size: .7rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    margin-top: 2px;
+}
+
+/* ── Detection table ───────────────────────────────────────── */
+.det-table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+.det-table th {
+    background: #eef2f8;
+    padding: 8px 12px;
+    text-align: left;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .68rem;
+    letter-spacing: .08em;
+    color: var(--muted);
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--border);
+}
+.det-table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+    color: var(--text);
+    background: var(--surface);
+}
+.det-table tr:hover td { background: #f0f5ff; }
+
+/* ── Badges ────────────────────────────────────────────────── */
+.badge {
+    display: inline-block; padding: 2px 9px; border-radius: 999px;
+    font-size: .7rem; font-weight: 600;
+    background: #dbeafe; color: #1d4ed8; border: 1px solid #bfdbfe;
+}
+.badge-ref  { background: #fef9c3; color: #854d0e; border: 1px solid #fde68a; }
+.badge-mode-h { background: #dcfce7; color: #15803d; border: 1px solid #bbf7d0; }
+.badge-mode-t { background: #fef3c7; color: #b45309; border: 1px solid #fde68a; }
+.badge-mode-n { background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; }
+
+/* ── Info / alert boxes ────────────────────────────────────── */
+.info-box {
+    background: #eff6ff;
+    border-left: 4px solid var(--accent);
+    border-radius: 6px;
+    padding: 11px 15px;
+    font-size: .875rem;
+    margin: .6rem 0;
+    color: var(--text);
+}
+.warn-box {
+    background: #fffbeb;
+    border-left: 4px solid var(--warn);
+    border-radius: 6px;
+    padding: 11px 15px;
+    font-size: .875rem;
+    margin: .6rem 0;
+    color: #78350f;
+}
+.good-box {
+    background: #f0fdf4;
+    border-left: 4px solid var(--green);
+    border-radius: 6px;
+    padding: 11px 15px;
+    font-size: .875rem;
+    margin: .6rem 0;
+    color: #14532d;
+}
+
+/* ── Upload zone ───────────────────────────────────────────── */
+[data-testid="stFileUploader"] {
+    background: var(--surface) !important;
+    border: 2px dashed #93c5fd !important;
+    border-radius: 10px !important;
+}
+[data-testid="stFileUploader"]:hover { border-color: var(--accent) !important; }
+
+/* ── Buttons ───────────────────────────────────────────────── */
+.stButton > button {
+    background: var(--accent) !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: .82rem !important;
+    font-weight: 600 !important;
+    padding: .5rem 1.4rem !important;
+    letter-spacing: .02em !important;
+    box-shadow: 0 2px 6px rgba(26,110,245,.25) !important;
+    transition: background .2s !important;
+}
+.stButton > button:hover { background: var(--accent2) !important; }
+
+/* ── Progress bar ──────────────────────────────────────────── */
+.stProgress > div > div { background: var(--accent) !important; }
+
+/* ── Sliders / radios ──────────────────────────────────────── */
+[data-testid="stSlider"] label { color: #94aabf !important; font-size: .8rem !important; }
+
+/* ── Expanders ─────────────────────────────────────────────── */
+[data-testid="stExpander"] {
+    background: var(--surface) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 8px !important;
+}
+
+/* ── Hide Streamlit chrome ─────────────────────────────────── */
+#MainMenu, footer, header { visibility: hidden; }
 </style>
 """, unsafe_allow_html=True)
 
