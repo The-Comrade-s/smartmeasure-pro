@@ -13,10 +13,10 @@ st.markdown("""
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap');
 
 :root {
-    --bg:#0d0f14; --surface:#161923; --border:#252b38;
+    --bg:#0E1117; --surface:#161B22; --border:#252b38;
     --accent:#00e5ff; --accent2:#7c3aed; --warn:#f59e0b;
     --green:#22c55e; --red:#ef4444;
-    --text:#e2e8f0; --muted:#64748b;
+    --text:#00DAFF; --muted:#FACC15;
 }
 html,body,[data-testid="stAppViewContainer"]{background:var(--bg)!important;color:var(--text)!important;font-family:'DM Sans',sans-serif}
 [data-testid="stSidebar"]{background:var(--surface)!important;border-right:1px solid var(--border)!important}
