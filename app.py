@@ -13,7 +13,7 @@ st.markdown("""
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap');
 
 :root {
-    --bg:#121212; --surface:#1E1E1E; --border:#555555;
+    --bg:#E3E355; --surface:#FACC15; --border:#000345;
     --accent:#4DA3FF; --accent2:#66B2FF; --warn:#FFC857;
     --green:#22c55e; --red:#ef4444;
     --text:#FFFFFF; --muted:#C7C7C7;
