@@ -195,7 +195,8 @@ html, body, [data-testid="stAppViewContainer"] {
 }
 
 /* ── Hide Streamlit chrome ─────────────────────────────────── */
-#MainMenu, footer, header { visibility: hidden; }
+#MainMenu { visibility: hidden; }
+footer { visibility: hidden; }
 </style>
 """, unsafe_allow_html=True)
 
